@@ -4,66 +4,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>APARA ARACHI</title>
+    <title>SUMMERIZER</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <style>
-        * {
-            background-image: url(./stars.png);
-        }
-
-        .kind:hover {
-            background-color: black;
-            color: white;
-            transition: 0.5s;
-        }
-    </style>
+    <link rel="stylesheet" href="./style.css">
 </head>
 
 <body>
-    <div
-        class="w-full bg-[url('https://th.bing.com/th/id/OIP.lV1D122wEiIG5qhRQ1J2eAHaEK?rs=1&pid=ImgDetMain')] h-[100vh]">
-        <div class="h-[8vh] w-full bg-[url('')] justify-center items-center flex">
-            <div class="justify-center items-center flex gap-2 w-full">
-                <div class="kind w-2/5">
-                    <input id="inputbar" type="text" placeholder="SEARCH"
-                        class="p-2 rounded-md border-4 block w-full text-center placeholder-white p-2 border rounded" />
-                </div>
-                <div class="search m-3">
-                    <img src="./search (1).png" onclick="search()" class="hover:point" height="60px" width="60px">
-                </div>
+    <div class="h-[100vh] flex justify-center items-center flex-col">
+       
+        <div class="text-6xl font-bold h-[9vh] w-full justify-center items-center flex gap-3 bg-[#CB9DF0]">
+            <h1 class="main">Summerizer</h1>
+        </div>
+
+        <!-- Navigation Bar -->
+        <div class="nav h-[6vh] flex items-center justify-center w-full px-6 gap-16 font-bold text-2xl bg-[#F0C1E1]">
+            <div class="border-b-2 border-transparent hover:border-black transition-all duration-300 ease-in-out px-3">Home</div>
+            <div class="border-b-2 border-transparent hover:border-black transition-all duration-300 ease-in-out px-3">Library</div>
+            <div class="border-b-2 border-transparent hover:border-black transition-all duration-300 ease-in-out px-3">Favourites</div>
+            <div class="border-b-2 border-transparent hover:border-black transition-all duration-300 ease-in-out px-3">Subjects</div>
+           
+            <div class="border-b-2 border-transparent hover:border-black transition-all duration-300 ease-in-out px-3 flex items-center gap-2">
+                <img src="./signin.png" alt="Profile Image" class="w-10 h-10 rounded-full">
+                <h1>Your Profile</h1>
             </div>
         </div>
 
-        <div class="justify-center items-center w-full h-full px-40">
-            <div id="photosection"
-                class="grid grid-cols-3 grid-rows-3 gap-4 w-full max-h-[92vh] pt-20 overflow-y-auto flex justify-center items-center m-5">
+        <!-- Main Content Area -->
+        <div class="h-[86vh] w-full flex items-center justify-between px-20 gap-10">
+            <!-- Image Section -->
+            <div><img src="./image.png" alt="Article Image" class="max-w-full h-auto rounded-full "></div>
+
+            <!-- Info Section -->
+            <div class="flex-col w-1/2 bg-yellow-200 rounded-lg px-10 py-8 rounded-md border-b-4 border-4 border-r-2 border-black">
+             
+                <div>
+                    <a href="./summary.html"><button class="py-4 px-8 bg-[#F0C1E1] text-4xl font-bold border-4 border-black shadow-md">Start Now</button></a>
+                </div>
+            
+                <div class="flex-col font-semibold text-3xl py-5 m-3">
+                    <h1 class="gap-1">Step-1 : Upload the article</h1><br>
+                    <h1 class="gap-1">Step-2 : See The Magic</h1><br>
+                    <h1 class="gap-1">Step-3 : Check the Library</h1><br>
+                </div>
             </div>
         </div>
     </div>
-
-    <script>
-        document.getElementById('inputbar').addEventListener('keydown', function (event) {
-            if (event.key === 'Enter') {
-                search();
-            }
-        });
-
-        async function search() {
-            const inputData = document.getElementById('inputbar').value;
-            const res = await fetch("https://wallpaper.acmsscbs.in/api/search?q=" + inputData);
-            const data = await res.json();
-            const main = document.getElementById("photosection");
-            main.innerHTML = "";
-            console.log(data);
-            for (var i = 0; i < data["wallpaper"].length; i++) {
-                var url = data.wallpaper[i].image;
-                var div = document.createElement("img");
-                div.setAttribute("src", url);
-                div.classList = ["w-[60vh]", "h-auto", "m-auto"];
-                main.appendChild(div);
-            }
-        }
-    </script>
 </body>
 
 </html>
