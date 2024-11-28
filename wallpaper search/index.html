@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>APARA ARACHI</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        * {
+            background-image: url(./stars.png);
+        }
+
+        .kind:hover {
+            background-color: black;
+            color: white;
+            transition: 0.5s;
+        }
+    </style>
+</head>
+
+<body>
+    <div
+        class="w-full bg-[url('https://th.bing.com/th/id/OIP.lV1D122wEiIG5qhRQ1J2eAHaEK?rs=1&pid=ImgDetMain')] h-[100vh]">
+        <div class="h-[8vh] w-full bg-[url('')] justify-center items-center flex">
+            <div class="justify-center items-center flex gap-2 w-full">
+                <div class="kind w-2/5">
+                    <input id="inputbar" type="text" placeholder="SEARCH"
+                        class="p-2 rounded-md border-4 block w-full text-center placeholder-white p-2 border rounded" />
+                </div>
+                <div class="search m-3">
+                    <img src="./search (1).png" onclick="search()" class="hover:point" height="60px" width="60px">
+                </div>
+            </div>
+        </div>
+
+        <div class="justify-center items-center w-full h-full px-40">
+            <div id="photosection"
+                class="grid grid-cols-3 grid-rows-3 gap-4 w-full max-h-[92vh] pt-20 overflow-y-auto flex justify-center items-center m-5">
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('inputbar').addEventListener('keydown', function (event) {
+            if (event.key === 'Enter') {
+                search();
+            }
+        });
+
+        async function search() {
+            const inputData = document.getElementById('inputbar').value;
+            const res = await fetch("https://wallpaper.acmsscbs.in/api/search?q=" + inputData);
+            const data = await res.json();
+            const main = document.getElementById("photosection");
+            main.innerHTML = "";
+            console.log(data);
+            for (var i = 0; i < data["wallpaper"].length; i++) {
+                var url = data.wallpaper[i].image;
+                var div = document.createElement("img");
+                div.setAttribute("src", url);
+                div.classList = ["w-[60vh]", "h-auto", "m-auto"];
+                main.appendChild(div);
+            }
+        }
+    </script>
+</body>
+
+</html>
